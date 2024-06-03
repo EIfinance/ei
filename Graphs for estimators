@@ -1,46 +1,58 @@
 from RogerSatchell import rogers_satchell_volatility
 from Parkinson import Parkinson
 from GarmanKlass import garman_klass__estimator
-from YangZhang import calculate_yang_zhang
+import YangZhang as yz 
 from Closetoclose import close_to_close
-import matplotlib.pyplot as plt
 import yfinance as yf
+import matplotlib.pyplot as plt
+
+data = yf.download('SPY', start='2000-01-01', end='2014-01-01')
+
 
 plt.figure(figsize=(14, 10))
 
-plt.subplot(data)
+parkinson_data = Parkinson(data) 
+garman_data = garman_klass__estimator(data) 
+rogers_data = rogers_satchell_volatility(data) 
+close_data = close_to_close(data) 
+
+plt.plot(data)
+plt.title('Data')
+plt.xlabel('Time')
 plt.ylabel('Standard deviation')
 plt.show()
 
-plt.subplot(5, 22, 1)
+plt.plot(close_data)
 plt.title('Close-to-close estimator')
-plt.ylabel('Standard deviatione')
+plt.ylabel('Standard deviation')
 plt.xlabel('Time')
-plt.plot(close_to_close)
+plt.show()
 
-plt.subplot(5,22, 2)
+
+plt.plot(parkinson_data)
 plt.title('Parkinson estimator')
 plt.ylabel('Standard deviation')
 plt.xlabel('Time')
-plt.plot(Parkinson)
-
-plt.subplot(5,22, 3)
-plt.titlel('Garman Klass estimator')
-plt.ylabel('Standard deviation')
-plt.xlabel('Time')
-plt.plot(garman_klass__estimator)
-
-plt.subplot(5,22, 4)
-plt.titlel('Rogers Satchell estimator')
-plt.ylabel('Standard deviation')
-plt.xlabel('Time')
-plt.plot(rogers_satchell_volatility)
 plt.show()
 
-plt.figure(figsize=(14, 10))
-plt.subplot(5, 2, 5)
+
+plt.plot(garman_data)
+plt.title('Garman Klass estimator')
+plt.ylabel('Standard deviation')
+plt.xlabel('Time')
+plt.show()
+
+plt.plot(rogers_data)
+plt.title('Rogers Satchell estimator')
+plt.ylabel('Standard deviation')
+plt.xlabel('Time')
+plt.show()
+
+yangzhang= yz.calculate_yang_zhang(data,k=0.5)
+
+plt.plot(yangzhang)
 plt.title('Yang-Zhang estimator')
 plt.ylabel('Standard deviation')
 plt.xlabel('Time')
-plt.plot(calculate_yang_zhang)
 plt.show()
+
