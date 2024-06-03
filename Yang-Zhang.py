@@ -12,7 +12,7 @@ def calculate_yang_zhang(data, k):
         np.log(data['Open'] / data['Close'].shift(1)) ** 2
         + k * np.log(data['Open'] / data['Close']) ** 2
         + (1 - k) * (np.log(data['High'] / data['Close']) * np.log(data['High'] / data['Open'])
-                  + np.log(data['Low'] / data['Close']) * np.log(data['Low'] / data['Open'])) ** 2)
+                  + np.log(data['Low'] / data['Close']) * np.log(data['Low'] / data['Open'])))
     
     return yang_zhang
 
