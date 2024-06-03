@@ -24,7 +24,11 @@ for i in range(len(estimators)):
     for j in range(len(estimators)):
         correlation_matrix[i,j] = estimators[i].corr(estimators[j])
 
-print(correlation_matrix)
+labels = ['Close to close', 'Garman Klass', 'Parkinson', 'Roger Satchell', 'Yang Zhang']
+
+df_correlation = pd.DataFrame(correlation_matrix, index=labels, columns=labels)
+
+print(df_correlation)
 
 
 # Correlation with the true volatility
@@ -33,6 +37,10 @@ true_volatility = ...
 correlation_with_true_vol = np.zeros((5))
 for i in range(len(correlation_with_true_vol)):
     correlation_with_true_vol[i] = estimators[i].corr(true_volatility)
+
+df_corr_true_vol = pd.DataFrame(correlation_with_true_vol, columns=labels)
+
+print(df_corr_true_vol)
 
 
 # Efficiency
