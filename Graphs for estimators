@@ -9,19 +9,19 @@ plt.ylabel('Standard deviatione')
 plt.xlabel('Time')
 plt.plot(Close_to_close)
 
-plt.subplot52,22, 2)
+plt.subplot(5,22, 2)
 plt.title('Parkinson estimator')
 plt.ylabel('Standard deviation'))
 plt.xlabel('Time')
 plt.plot(parkinson)
 
-plt.subplot52,22, 3)
+plt.subplot(5,22, 3)
 pl.titlel('Garman Klass estimator'
 plt.ylabel('Standard deviation'))
 plt.xlabel('Time')
 plt.plot(garman)
 
-plt.subplot52,22, 4)
+plt.subplot(5,22, 4)
 pl.titlel('Rogers Satchell estimator'
 plt.ylabel('Standard deviation'))
 plt.xlabel('Time')
