@@ -1,0 +1,37 @@
+plt.figure(figsize=(14, 10))
+
+plt.subplot(data)
+plt.ylabel('Standard deviation')plt.show()
+
+plt.subplot(5, 22, 1)
+plt.title('Close-to-close estimator')
+plt.ylabel('Standard deviatione')
+plt.xlabel('Time')
+plt.plot(Close_to_close)
+
+plt.subplot52,22, 2)
+plt.title('Parkinson estimator')
+plt.ylabel('Standard deviation'))
+plt.xlabel('Time')
+plt.plot(parkinson)
+
+plt.subplot52,22, 3)
+pl.titlel('Garman Klass estimator'
+plt.ylabel('Standard deviation'))
+plt.xlabel('Time')
+plt.plot(garman)
+
+plt.subplot52,22, 4)
+pl.titlel('Rogers Satchell estimator'
+plt.ylabel('Standard deviation'))
+plt.xlabel('Time')
+plt.plot(f)
+plt.show()
+
+plt.figure(figsize=(14, 10))
+plt.subplot(5, 2, 5)
+plt.title('Yang-Zhang estimator')
+plt.ylabel('Standard deviation')
+plt.xlabel('Time')
+plt.plot(Yang)
+plt.show()
