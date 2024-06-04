@@ -1,0 +1,26 @@
+import pandas as pd
+import numpy as np
+import yfinance as yf
+import matplotlib.pyplot as plt
+import statsmodels.api as sm
+
+data = yf.download('SPY', start='2000-01-01', end='2014-01-01')
+true_volatility = data['Close'].rolling(window=30).std()
+true_volatility = true_volatility.bfill()
+
+fig, ax = plt.subplots(figsize=(12, 6))
+sm.graphics.tsa.plot_acf(true_volatility.dropna(), lags=60, ax=ax, title="ACF of Volatility")
+plt.show()
+
+log_volatility = np.log(true_volatility)
+fig, ax = plt.subplots(figsize=(12, 6))
+sm.graphics.tsa.plot_acf(log_volatility.dropna(), lags=60, ax=ax, title="Autocorrelation of Log-Volatility")
+plt.show()
+
+volatility_acfs = acf(true_volatility, nlags=60, fft=True)
+
+log_volatility_acfs = np.log(np.abs(volatility_acfs) + 1e-10)  
+
+fig, ax = plt.subplots(figsize=(12, 6))
+sm.graphics.tsa.plot_acf(log_volatility_acfs, lags=30, ax=ax, title="Log-Autocorrelation of Volatility ACFs")
+plt.show()
