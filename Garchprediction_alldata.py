@@ -1,8 +1,10 @@
+
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 from arch import arch_model
-
+import warnings 
+warnings.filterwarnings("ignore")
 # Load data
 data = pd.read_csv('RealizedVarianceData.csv', low_memory=False)
 
@@ -29,7 +31,7 @@ out_sample = data.loc[split_date:]
 a=1
 b=0
 # Rolling window forecast
-window_size = 30  
+window_size = 1
 forecasts = []
 
 for start in range(len(out_sample) - window_size):
@@ -49,10 +51,10 @@ for start in range(len(out_sample) - window_size):
 
 # Convert forecasts to a Series with correct index
 forecasts = pd.Series(forecasts, index=out_sample.index[window_size:])
-
+forecasts=forecasts.shift(-2)
 # Plot the true out-sample data and the forecasted data
 plt.figure(figsize=(12, 6))
-plt.plot(out_sample.index[window_size:], out_sample['Realized Volatility (5-minute)'][window_size:], label='True Out-Sample Volatility')
+plt.plot(forecasts.index, out_sample['Realized Volatility (5-minute)'][window_size:], label='True Out-Sample Volatility')
 plt.plot(forecasts.index, forecasts, label='Forecasted Volatility')
 plt.legend()
 plt.title('True vs Forecasted Volatility')
